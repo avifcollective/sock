@@ -1,0 +1,22 @@
+{
+  "name": "sock",
+  "version": "0.0.1",
+  "description": "A console chat for nin0chat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "samu.lol",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "@types/terminal-kit": "^2.5.6",
+    "@types/ws": "^8.5.12",
+    "terminal-kit": "^3.1.1",
+    "ws": "^8.18.0"
+  }
+}
