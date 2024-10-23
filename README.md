@@ -7,3 +7,8 @@ A project for me to practice my programming abilities. Not to be taken seriously
 ## How to use
 
 TBD when the project functions as intended
+
+## Roadmap
+
+- Finish messaging
+- Add commands to control client
