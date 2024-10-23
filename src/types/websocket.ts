@@ -6,9 +6,18 @@ export interface Message {
     device: Device,
 }
 
+export enum Role {
+    Guest = 0,
+    User = 1,
+    Bot = 2,
+    System = 3,
+    Mod = 4,
+    Admin = 5
+};
+
 interface UserInfo {
     username: string,
-    roles: number,
+    roles: Role,
     id: string,
 }
 

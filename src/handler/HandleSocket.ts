@@ -1,14 +1,18 @@
 import { WebSocket } from 'ws'
-import { ReceiveHeartbeat, ReceiveHistory, ReceiveMessage, SendLogin } from '../types/websocket'
+import { Message, ReceiveHeartbeat, ReceiveHistory, ReceiveMessage, SendLogin } from '../types/websocket'
 import { Details } from '../types/local'
+import { HandleMessage } from './HandleMessage'
+import { events } from '..'
 
 export class HandleSocket {
     websocket: string
     ws: WebSocket
+    events: HandleMessage
 
     constructor(details: Details) {
         this.websocket = 'wss://chatws.nin0.dev'
         this.ws = new WebSocket(this.websocket)
+        this.events = events
         if (!details.token) this.manageStartAnon(details.username || 'Sock' + Math.floor(Math.random() * (10 - 1 + 1) + 1))
         else this.manageStart(details.token)
     }
@@ -45,9 +49,9 @@ export class HandleSocket {
             if (m.op === 2) {   // Temporary 
                 this.ws.send(JSON.stringify(m)) // Temporary 
             } else if (m.op === 0) {    // Temporary 
-                console.log(`New message from ${m.d.userInfo.username}: ${m.d.content}`)    // Temporary 
+                events.onMessage.trigger(m.d)
             } else if (m.op === 3) {    // Temporary 
-                console.log('Received history from server') // Temporary 
+                events.onHistory.trigger(m.d)
             }   // Temporary 
         })  // Temporary 
     }   // Temporary 
